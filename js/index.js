@@ -11,4 +11,39 @@ window.onload = function() {
     awardWinner.start();
 };
 
+(() => {
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const effectClasses = [
+          'slideInLeft',
+          'fadeInDown',
+          'slideInRight',
+          'bounceIn',
+          'zoomInDown',
+          'rotateIn',
+          'zoomIn',
+          'fadeInRight',
+          'fadeInLeft',
+          'zoomInUp',
+          'jackInTheBox'
+        ];
+        if (entry.isIntersecting) {
+        const matchingClass = entry.target.classList.value.split(' ')
+          .find(className => effectClasses.includes(className));
+        if (matchingClass) {
+          entry.target.classList.add('animate__animated', `animate__${matchingClass}`);
+        }
+        observer.unobserve(entry.target);
+        }
+      });
+    });
+    
+    const animatedElements = document.querySelectorAll('.animate');
+    animatedElements.forEach(element => {
+      observer.observe(element); 
+    });
+  })();
+ 
+  
+
 document.getElementById("year").innerHTML = new Date().getFullYear();

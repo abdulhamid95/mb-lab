@@ -518,6 +518,7 @@ section {
             width: 1100px;
             left: 50%;
             transform: translateX(-50%);
+            z-index: 10;
 
             @media (max-width: 1200px) {
                 width: 900px;
@@ -615,9 +616,21 @@ section {
                 margin-bottom: 35px;
             }
 
-            #gallery img {
-                cursor: pointer;
-                height: 250px;
+            #gallery {
+
+                .col-lg-3 {
+                    overflow: hidden;
+                }
+
+                img {
+                    cursor: pointer;
+                    height: 250px;
+                    transition: all .7s ease;
+    
+                    &:hover {
+                        transform: scale(1.2) rotate(10deg);
+                    }
+                }
             }
 
             .modal-body {
